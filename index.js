@@ -1,3 +1,5 @@
+
+
 const express = require('express');
 const app  = express();
 
@@ -14,7 +16,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended : true}))
 app.use(express.static('public'))
 
-mongoose.connect("mongodb+srv://parsa:4vMhhaVe1klHj9be@cluster0.6ngxzut.mongodb.net/?retryWrites=true&w=majority")
+mongoose.connect(process.env.MONGODB_URL)
 .then(()=>{debug("connected to database")})
 .catch(()=>{debug("could not connect")})
 
@@ -24,6 +26,7 @@ const PORT  = process.env.PORT || 3000 ;
 
 app.listen(PORT , ()=>{console.log(`lestening to port ${PORT}`)})
 
+require("dotenv").config()
 
 
 
