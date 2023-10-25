@@ -8,5 +8,6 @@ router.post('/' , validator.createPostValidator() , controller.validate ,control
 router.post('/like' , controller.likePost)
 router.post('/save' , controller.savePost)
 router.post('/comment' , controller.newComment)
+router.put('/:postId' , controller.editPost)
 router.delete('/:postId' , controller.deletePost )
 module.exports  = router;

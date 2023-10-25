@@ -78,10 +78,19 @@ module.exports = new (class extends controller {
       lastName,
       profile,
       body: commentBody,
-    })
+    });
     let currentPost = await this.Posts.findByIdAndUpdate(postId, {
       $push: { comments: comment },
     });
-    this.response({res , messages : "کامنت ذخیره شد." , data : {comment}})
+    this.response({ res, messages: "کامنت ذخیره شد.", data: { comment } });
+  }
+  async editPost(req, res) {
+    const  postId  = req.params.postId;
+    const {title , description} = req.body;
+    const post = await this.Posts.findByIdAndUpdate(postId , {
+      title , 
+      description
+    })
+    this.response({res , message : "post edited" , data : {post}})
   }
 })();
